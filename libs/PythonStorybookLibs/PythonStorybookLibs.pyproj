@@ -1,0 +1,66 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>794474ed-2886-4a1f-b803-5a75913f8d40</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>PythonStorybookLibs.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>PythonStorybookLibs</Name>
+    <RootNamespace>PythonStorybookLibs</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="helpers\dictionaries.py" />
+    <Compile Include="helpers\lists.py" />
+    <Compile Include="helpers\matrices.py" />
+    <Compile Include="helpers\numbers.py" />
+    <Compile Include="helpers\plots.py" />
+    <Compile Include="helpers\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\icons.py" />
+    <Compile Include="Math\numbers.py" />
+    <Compile Include="Math\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="output\html.py" />
+    <Compile Include="output\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PythonStorybookLibs.py" />
+    <Compile Include="tuition\assessment.py" />
+    <Compile Include="tuition\multiply_strategy.py" />
+    <Compile Include="tuition\strategy.py" />
+    <Compile Include="tuition\survey_strategy.py" />
+    <Compile Include="tuition\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="helpers\" />
+    <Folder Include="Math\" />
+    <Folder Include="output\" />
+    <Folder Include="tuition\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
