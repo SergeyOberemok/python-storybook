@@ -1,3 +1,5 @@
+first = 1
+last = 10
+numbers = [*range(first, last), last]
 
-numbers = [(1, 4), (2, 3)]
-
+print(len(numbers), numbers)
