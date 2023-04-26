@@ -1,14 +1,10 @@
 
-from survey_strategy import SurveyStrategy
+from strategy import Strategy
 
-class MultiplyStrategy(SurveyStrategy):
+class MultiplyStrategy(Strategy):
 
-    def __init__(self, data: tuple) -> None:
-        super().__init__()
+    def __init__(self) -> None:
+        pass
 
-        self.data = data
-
-    def doAction(self, question: str, answerToQuestion: int) -> bool:
-        question = '%s equals to ' %question
-
-        return super().doAction(question, answerToQuestion)
+    def doAlgorithm(self) -> bool:
+        return True

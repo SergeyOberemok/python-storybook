@@ -11,6 +11,9 @@
     <OutputPath>.</OutputPath>
     <Name>PythonStorybookLibs</Name>
     <RootNamespace>PythonStorybookLibs</RootNamespace>
+    <TestFramework>pytest</TestFramework>
+    <UnitTestPattern>test*.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +42,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PythonStorybookLibs.py" />
+    <Compile Include="test\helpers\test_lists.py" />
+    <Compile Include="test\helpers\test_numbers.py" />
+    <Compile Include="test\helpers\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tuition\assessment.py" />
+    <Compile Include="tuition\context.py" />
     <Compile Include="tuition\multiply_strategy.py" />
     <Compile Include="tuition\strategy.py" />
     <Compile Include="tuition\survey_strategy.py" />
@@ -52,6 +64,8 @@
     <Folder Include="helpers\" />
     <Folder Include="Math\" />
     <Folder Include="output\" />
+    <Folder Include="test\" />
+    <Folder Include="test\helpers\" />
     <Folder Include="tuition\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

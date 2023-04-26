@@ -1,13 +1,13 @@
 
 import random
+from faker import Faker
 
-def generateListWithRandomNumbers(length: int, maxNumber: int, isZeroIncluded: bool = True) -> list:
-    arr = list()
+def getRandomNumbers(length: int, minNumber: int, maxNumber: int) -> list:
+    fake = Faker()
+    numbers = []
 
-    if length <= 0:
-        return arr
+    while length > 0:
+        numbers.append(fake.random.randint(minNumber, maxNumber))
+        length -= 1
 
-    for i in range(0, length):
-        arr.append(random.randint(0 if isZeroIncluded else 1, maxNumber))
-
-    return arr
+    return numbers
