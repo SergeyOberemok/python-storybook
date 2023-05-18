@@ -1,7 +1,7 @@
 
-from strategy import Strategy
+from .strategy import Strategy
 
-class Context:
+class StrategyContext:
     
     def __init__(self, strategy: Strategy) -> None:
         self._strategy = strategy
@@ -14,5 +14,7 @@ class Context:
     def strategy(self, strategy: Strategy) -> None:
         self._strategy = strategy
 
-    def prepareAndDoAlgorithm(self) -> None:
-        result = self._strategy.doAlgorithm()
+    def prepareAndDoAlgorithm(self) -> bool:
+        self._strategy.doAlgorithm()
+
+        return True;

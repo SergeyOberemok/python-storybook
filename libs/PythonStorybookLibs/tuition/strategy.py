@@ -1,8 +1,11 @@
 
 from abc import ABC, abstractmethod
+from typing import TypeVar, Generic
 
-class Strategy(ABC):
+T = TypeVar("T")
 
+
+class Strategy(ABC, Generic[T]):
     @abstractmethod
-    def doAlgorithm(self) -> bool:
+    def doAlgorithm(self) -> T:
         pass

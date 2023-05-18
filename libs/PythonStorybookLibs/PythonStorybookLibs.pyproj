@@ -51,10 +51,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tuition\assessment.py" />
-    <Compile Include="tuition\context.py" />
-    <Compile Include="tuition\multiply_strategy.py" />
+    <Compile Include="tuition\concrete_strategies\add_strategy.py" />
+    <Compile Include="tuition\concrete_strategies\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tuition\strategy_context.py" />
+    <Compile Include="tuition\concrete_strategies\multiply_strategy.py" />
     <Compile Include="tuition\strategy.py" />
-    <Compile Include="tuition\survey_strategy.py" />
+    <Compile Include="tuition\concrete_strategies\survey_context_strategy.py" />
     <Compile Include="tuition\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +71,7 @@
     <Folder Include="test\" />
     <Folder Include="test\helpers\" />
     <Folder Include="tuition\" />
+    <Folder Include="tuition\concrete_strategies\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
