@@ -29,10 +29,15 @@ def tableToHtml(table):
 
     return str(tableHtml)
 
-def dictionaryToHtml(dictionary):
+def dictionaryToHtml(dictionary, inverseVertically: bool = False):
     tableHtml = TableHtml()
+
+    keys = list(dictionary.keys())
+
+    if inverseVertically:
+        keys.reverse()
         
-    for key in dictionary:
+    for key in keys:
         columns = [key] + dictionary[key]
         tableHtml.addColumns(str(column) for column in columns)
         
