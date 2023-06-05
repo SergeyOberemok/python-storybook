@@ -30,20 +30,3 @@ def mapMatrixToIcons(M, icons):
             R[row, column] = mapNumberToIcons(M[row, column], icons)
 
     return R
-
-
-def mapDictionaryWithNumberTermsToIcons(d, icons: dict, separator=""):
-    keysWithIcons = [(number, mapNumberToIcons(number, icons)) for number in d.keys()]
-    R = {icon: [] for key, icon in keysWithIcons}
-
-    for key, icon in keysWithIcons:
-        numberTerms = d[key]
-
-        for terms in numberTerms:
-            term1 = mapNumberToIcons(terms[0], icons)
-            term2 = mapNumberToIcons(terms[1], icons)
-
-            termsStr = separator.join([term1, term2])
-            R[icon].append(termsStr)
-
-    return R
