@@ -1,5 +1,5 @@
 
-from ...helpers.numbers import getDigits, getRandomNumbers
+from ..numbers import getDigits, getRandomNumbers
 
 
 def test_getDigits() -> None:

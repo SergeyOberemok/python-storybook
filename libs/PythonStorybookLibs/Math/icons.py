@@ -1,10 +1,10 @@
 ﻿
 import numpy as np
 
-from ..helpers.numbers import getDigits
+from helpers.numbers import getDigits
 
 
-def getIcons(digits: int, icons: dict) -> list:
+def getIcons(digits: str, icons: dict) -> list:
     return [icons[digit] for digit in digits]
 
 

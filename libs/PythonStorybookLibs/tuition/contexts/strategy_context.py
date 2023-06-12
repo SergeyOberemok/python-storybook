@@ -1,5 +1,5 @@
 
-from .strategy import Strategy
+from ..strategies.strategy import Strategy
 
 class StrategyContext:
     
@@ -18,3 +18,6 @@ class StrategyContext:
         self._strategy.doAlgorithm()
 
         return True;
+
+    def getInput():
+        return input

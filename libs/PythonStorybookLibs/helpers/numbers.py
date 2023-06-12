@@ -2,13 +2,14 @@
 from faker import Faker
 
 
-def getDigits(number):
+def getDigits(number: int) -> list[int]:
     letters = [*str(number)]
-    digits = list(map(lambda letter: int(letter), letters))
+    digits = [int(letter) for letter in letters]
+
     return digits
 
 
-def getRandomNumbers(length: int, minNumber: int, maxNumber: int) -> list:
+def getRandomNumbers(length: int, minNumber: int, maxNumber: int) -> list[int]:
     fake = Faker()
     numbers = []
 

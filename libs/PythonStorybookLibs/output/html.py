@@ -21,10 +21,10 @@ class TableHtml:
         rowsHtml = self.rowHtml.format(joinedRows)
         return self.tableHtml.format(rowsHtml)
 
-def tableToHtml(table):
-    tableHtml = TableHtml()
+    def toHtml(table):
+        tableHtml = TableHtml()
     
-    for row in table:
-        tableHtml.addColumns(str(column) for column in row)
+        for row in table:
+            tableHtml.addColumns(str(column) for column in row)
 
-    return str(tableHtml)
+        return str(tableHtml)

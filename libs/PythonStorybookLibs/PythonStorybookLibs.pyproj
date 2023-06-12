@@ -24,6 +24,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="helpers\tests\test_lists.py" />
+    <Compile Include="helpers\tests\test_numbers.py" />
+    <Compile Include="helpers\tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="helpers\dictionaries.py" />
     <Compile Include="helpers\lists.py" />
     <Compile Include="helpers\matrices.py" />
@@ -41,37 +46,54 @@
     <Compile Include="output\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PythonStorybookLibs.py" />
-    <Compile Include="test\helpers\test_lists.py" />
-    <Compile Include="test\helpers\test_numbers.py" />
-    <Compile Include="test\helpers\__init__.py">
+    <Compile Include="tuition\assessments\tests\test_assessment.py" />
+    <Compile Include="tuition\assessments\tests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="test\__init__.py">
+    <Compile Include="tuition\assessments\assessment.py" />
+    <Compile Include="tuition\assessments\assessment_factory.py" />
+    <Compile Include="tuition\assessments\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tuition\assessment.py" />
-    <Compile Include="tuition\concrete_strategies\add_strategy.py" />
-    <Compile Include="tuition\concrete_strategies\__init__.py">
+    <Compile Include="tuition\contexts\strategy_context.py" />
+    <Compile Include="tuition\contexts\survey_context_strategy.py" />
+    <Compile Include="tuition\contexts\survey_context_strategy_factory.py" />
+    <Compile Include="tuition\contexts\tests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tuition\strategy_context.py" />
-    <Compile Include="tuition\concrete_strategies\multiply_strategy.py" />
-    <Compile Include="tuition\strategy.py" />
-    <Compile Include="tuition\concrete_strategies\survey_context_strategy.py" />
+    <Compile Include="tuition\contexts\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tuition\strategies\add_strategy.py" />
+    <Compile Include="tuition\strategies\multiply_strategy.py" />
+    <Compile Include="tuition\strategies\strategy.py" />
+    <Compile Include="tuition\strategies\tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tuition\strategies\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tuition\strategies\tests\test_add_strategy.py" />
+    <Compile Include="tuition\strategies\tests\test_multiply_strategy.py" />
+    <Compile Include="tuition\contexts\tests\test_survey_context_strategy.py" />
     <Compile Include="tuition\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PythonStorybookLibs.py" />
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="helpers\" />
+    <Folder Include="helpers\tests\" />
     <Folder Include="Math\" />
     <Folder Include="output\" />
-    <Folder Include="test\" />
-    <Folder Include="test\helpers\" />
     <Folder Include="tuition\" />
-    <Folder Include="tuition\concrete_strategies\" />
+    <Folder Include="tuition\assessments\" />
+    <Folder Include="tuition\assessments\tests\" />
+    <Folder Include="tuition\contexts\" />
+    <Folder Include="tuition\contexts\tests\" />
+    <Folder Include="tuition\strategies\" />
+    <Folder Include="tuition\strategies\tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
