@@ -1,5 +1,3 @@
-
-from typing import Callable
 from .strategy_context import StrategyContext
 from ..strategies.strategy import Strategy
 
@@ -10,11 +8,14 @@ class SurveyContextStrategy(StrategyContext):
 
         self.question = question
 
-    def prepareAndDoAlgorithm(self) -> bool:
+    def prepareAndDoAlgorithm(self) -> tuple[bool, any]:
         inputMethod = StrategyContext.getInput()
 
         response = inputMethod(self.question)
 
+        if not response:
+            raise Exception('Response is empty')
+
         answer = self.strategy.doAlgorithm()
 
-        return str(answer) == response
+        return str(answer) == response, answer

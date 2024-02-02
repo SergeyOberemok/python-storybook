@@ -1,4 +1,5 @@
 from pytest import mark
+
 from tuition.strategies.multiply_strategy import MultiplyStrategy
 
 

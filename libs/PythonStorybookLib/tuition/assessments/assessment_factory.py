@@ -1,13 +1,11 @@
-
-from typing import Callable
+from .assessment import Assessment
 from ..contexts.strategy_context import StrategyContext
 from ..contexts.survey_context_strategy_factory import SurveyContextStrategyFactory
 from ..strategies.add_strategy import AddStrategy
-from ..strategies.multiply_strategy import MultiplyStrategy
-from .assessment import Assessment
 
 
 class AssessmentFactory(object):
+    @staticmethod
     def createAdditionAssessment(numbersAndQuestions: list) -> Assessment:
         def createQuestion(x: int, y: int, question: str) -> StrategyContext:
             strategy = AddStrategy[int]((x, y))
@@ -19,12 +17,13 @@ class AssessmentFactory(object):
 
         return Assessment(questions)
 
+    @staticmethod
     def createMultiplyAssessment(numbers: list, count: int = 0) -> Assessment:
         pass
-        #def getQuestion() -> StrategyContext:
+        # def getQuestion() -> StrategyContext:
         #    x, y = getItemsRandomly(numbers, 2)
 
         #    strategy = MultiplyStrategy((x, y))
         #    return SurveyContextStrategyFactory.create(strategy)
 
-        #return AssessmentFactory.create(getQuestion, count)
+        # return AssessmentFactory.create(getQuestion, count)

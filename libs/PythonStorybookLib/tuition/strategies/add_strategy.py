@@ -1,5 +1,5 @@
-
 from typing import TypeVar, Generic, Tuple
+
 from .strategy import Strategy
 
 T = TypeVar("T")

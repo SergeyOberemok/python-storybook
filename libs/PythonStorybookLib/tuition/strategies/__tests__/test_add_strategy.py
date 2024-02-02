@@ -1,5 +1,5 @@
-
 from pytest import mark
+
 from tuition.strategies.add_strategy import AddStrategy
 
 

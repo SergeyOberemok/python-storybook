@@ -1,4 +1,3 @@
-
 def getPlotBoundaries(top: int, right: int, bottom: int = None, left: int = None, margin: int = 0) -> list:
     if bottom is None:
         bottom = -top
@@ -11,9 +10,10 @@ def getPlotBoundaries(top: int, right: int, bottom: int = None, left: int = None
         getPlotBound(right, margin),
         getPlotBound(bottom, margin),
         getPlotBound(top, margin)
-        ];
+    ]
+
 
 def getPlotBound(bound: int, margin: int) -> int:
-    sign = int(abs(bound) / bound);
+    sign = int(abs(bound) / bound)
 
-    return sign * (abs(bound) + margin);
+    return sign * (abs(bound) + margin)

@@ -1,6 +1,5 @@
-
-import pytest
 from pytest import mark
+
 from tuition.assessments.assessment_factory import AssessmentFactory
 from tuition.contexts.strategy_context import StrategyContext
 
@@ -22,4 +21,4 @@ class TestAssessment:
 
         assessment = AssessmentFactory.createAdditionAssessment(numbersAndQuestions)
 
-        assert assessment.start() == True
+        assert assessment.start() is True

@@ -1,11 +1,13 @@
 from typing import Callable
+
 import pytest
+
 from tuition.contexts.strategy_context import StrategyContext
-from tuition.strategies.multiply_strategy import MultiplyStrategy
-from tuition.strategies.strategy import Strategy
 from tuition.contexts.survey_context_strategy_factory import (
     SurveyContextStrategyFactory,
 )
+from tuition.strategies.multiply_strategy import MultiplyStrategy
+from tuition.strategies.strategy import Strategy
 
 
 @pytest.fixture
@@ -22,15 +24,15 @@ def question(strategy: Strategy[int]) -> str:
 
 
 @pytest.fixture
-def answer(strategy: Strategy[int]) -> str:
-    return str(strategy.doAlgorithm())
+def answer(strategy: Strategy[int]) -> int:
+    return strategy.doAlgorithm()
 
 
 @pytest.fixture
-def getInput(question: str, answer: str) -> Callable:
+def getInput(question: str, answer: int) -> Callable:
     def inputMock(q: str) -> str:
         assert question == q
-        return answer
+        return str(answer)
 
     def getInputMock() -> Callable:
         return inputMock
@@ -51,4 +53,7 @@ class TestSurveyContextStrategy:
 
         survey = SurveyContextStrategyFactory.create(strategy, question)
 
-        assert survey.prepareAndDoAlgorithm() is True
+        result, expected = survey.prepareAndDoAlgorithm()
+
+        assert result is True
+        assert answer == expected

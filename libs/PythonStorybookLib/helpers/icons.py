@@ -1,6 +1,6 @@
 ﻿import numpy as np
 
-from helpers.numbers import getDigits
+from .numbers import getDigits
 
 
 def mapDigitsToIcons(digits: list[int], icons: dict) -> list:

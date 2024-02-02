@@ -1,5 +1,6 @@
 import random
 from typing import Callable
+
 from ..contexts.strategy_context import StrategyContext
 
 
@@ -9,14 +10,22 @@ class Assessment:
 
         self._questions = questions
 
-    def start(self) -> bool:
+    def start(self, mapAnswer: Callable = None) -> bool:
         result = True
 
         for question in self._questions:
-            if question.prepareAndDoAlgorithm():
-                print('Correct')
-            else:
-                print('Wrong')
-                result = False
+            try:
+                isCorrect, expected = question.prepareAndDoAlgorithm()
+
+                if mapAnswer is not None:
+                    expected = mapAnswer(expected)
+
+                if isCorrect:
+                    print('Correct - %s' % expected)
+                else:
+                    print('Wrong, correct answer is %s' % expected)
+                    result = False
+            except:
+                return False
 
         return result

@@ -1,8 +1,8 @@
-
 from ..strategies.strategy import Strategy
 
+
 class StrategyContext:
-    
+
     def __init__(self, strategy: Strategy):
         self._strategy = strategy
 
@@ -14,10 +14,9 @@ class StrategyContext:
     def strategy(self, strategy: Strategy) -> None:
         self._strategy = strategy
 
-    def prepareAndDoAlgorithm(self) -> bool:
-        self._strategy.doAlgorithm()
+    def prepareAndDoAlgorithm(self) -> any:
+        return self._strategy.doAlgorithm()
 
-        return True;
-
+    @staticmethod
     def getInput():
         return input
