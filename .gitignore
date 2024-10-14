@@ -1,1 +1,5 @@
 **/*.ipynb_checkpoints
+.jupyter
+.virtual_documents
+**/*.idea
+**/*__pycache__
