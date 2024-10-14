@@ -1,4 +1,4 @@
-﻿import numpy as np
+import numpy as np
 
 from .numbers import getDigits
 
