@@ -70,6 +70,8 @@ def spinWordAround(word: str) -> list[str]:
 
 # ## Chunk
 
+# ### syllables
+
 # +
 def getSyllables(word: str, length: int) -> list[str]:
     syllables = wrap(word, length)
@@ -89,6 +91,8 @@ def getTriphthongs(word: str) -> list[str]:
 # -
 
 # ## Flatten
+
+# ### Chunk of syllables
 
 def flattenSyllables(syllables: list[list[str]]) -> list[str]:
     return list(chain.from_iterable(syllables))
@@ -112,19 +116,41 @@ def divideIntoSyllables(word: str) -> list[str]:
 # print(divideIntoSyllables(word))
 # -
 
-# ### Frequencies
+# ## Frequencies
 
-def getSyllablesFrequencies(words: list[str]) -> dict[str, int]:
+# ### Count syllables
+
+def countSyllables(words: list[str]) -> dict[str, int]:
     syllablesFrequencies = defaultdict(int)
     
     for word in words:
         for syllable in divideIntoSyllables(word):
                 syllablesFrequencies[syllable] += 1
 
+    return syllablesFrequencies
+
+
+# + active=""
+# print(countSyllables(fake.words()))
+# -
+
+def percentageToNumber(total: int, percent: int) -> int:
+    return round(total * percent / 100)
+
+
+# + active=""
+# print(percentageToNumber(4, 25))
+# -
+
+# ### Merge and sort
+
+def getSyllablesFrequencies(words: list[str], minFrequencyPercentage: int = 0) -> dict[str, int]:
+    syllablesFrequencies = countSyllables(words)
     sortedAlphabetically = sorted(syllablesFrequencies)
     sortedByLength = sorted(sortedAlphabetically, key=len, reverse=True)
     sortedByFrequency = sorted(sortedByLength, key=syllablesFrequencies.get, reverse=True)
-    syllablesFrequenciesDict = dict([(syllable, syllablesFrequencies[syllable]) for syllable in sortedByFrequency])
+    minFrequency = percentageToNumber(max(syllablesFrequencies.values()), minFrequencyPercentage)
+    syllablesFrequenciesDict = dict([(syllable, syllablesFrequencies[syllable]) for syllable in sortedByFrequency if syllablesFrequencies[syllable] >= minFrequency])
     
     return syllablesFrequenciesDict
 
