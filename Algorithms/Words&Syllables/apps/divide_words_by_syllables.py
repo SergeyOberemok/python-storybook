@@ -1,5 +1,5 @@
 from divide_word_by_syllables import divideBy
-from helpers.file_utilities import readCSVLinesAsPairs, writeCSV
+from utilities.files import readCSVLinesAsPairs, writeCSV
 
 
 def divideWordsBySyllables() -> list[tuple[str, str]]:

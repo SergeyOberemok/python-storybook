@@ -1,4 +1,4 @@
-from helpers.file_utilities import readLines, writeCSV
+from utilities.files import readLines, writeCSV
 from words_extraction_from_text import getWordsFrequenciesFromLines
 
 

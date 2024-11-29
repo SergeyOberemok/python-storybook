@@ -1,5 +1,5 @@
 from chunk_syllables_from_word import getSyllablesFrequencies
-from helpers.file_utilities import readCSVLinesAsPairs, writeCSV
+from utilities.files import readCSVLinesAsPairs, writeCSV
 
 
 def main():

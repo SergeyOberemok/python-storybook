@@ -1,4 +1,4 @@
-from helpers.file_utilities import readText, writeText
+from utilities.files import readText, writeText
 from remove_non_word_signs import removeNonWordSigns
 
 

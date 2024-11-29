@@ -1,20 +1,20 @@
 from pytest import mark
 
-from tuition.strategies.multiply_strategy import MultiplyStrategy
+from Strategies import MultiplicationStrategy
 
 
-class TestMultiplyStrategy:
+class TestMultiplicationStrategy:
     def setup_class(self):
         self.num1 = 2
         self.num2 = 3
         self.result = self.num1 * self.num2
 
     def setup_method(self):
-        self.strategy = MultiplyStrategy[int]((self.num1, self.num2))
+        self.strategy = MultiplicationStrategy[int]((self.num1, self.num2))
 
     @mark.parametrize(["num1", "num2", "answer"], [(0, 0, 0), (2, 3, 6)])
     def test_doAlgorithm(self, num1: int, num2: int, answer: int):
-        strategy = MultiplyStrategy[int]((num1, num2))
+        strategy = MultiplicationStrategy[int]((num1, num2))
 
         result = strategy.doAlgorithm()
 
@@ -22,7 +22,7 @@ class TestMultiplyStrategy:
 
     @mark.parametrize(["num1", "num2", "answer"], [(2, 3, "2 * 3")])
     def test_toString(self, num1: int, num2: int, answer: str):
-        strategy = MultiplyStrategy[int]((num1, num2))
+        strategy = MultiplicationStrategy[int]((num1, num2))
         sign = "*"
 
         result = str(self.strategy)
