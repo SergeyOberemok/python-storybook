@@ -1,7 +1,7 @@
 import pytest
 
 from Strategies import MultiplicationStrategy
-from StrategyContext import StrategyContext, SurveyContextStrategyFactory, SurveyContextStrategy
+from StrategyContext import StrategyContext, SurveyContextStrategy
 
 
 @pytest.fixture
@@ -12,8 +12,9 @@ def question() -> str:
 def test_strategy_context(monkeypatch):
     monkeypatch.setattr(MultiplicationStrategy, 'doAlgorithm', lambda _: True)
 
-    strategy = MultiplicationStrategy()
+    strategy = MultiplicationStrategy((2, 2))
     strategyContext = StrategyContext(strategy)
+
     result = strategyContext.doAlgorithm()
 
     assert result is True
@@ -21,7 +22,7 @@ def test_strategy_context(monkeypatch):
 
 
 def test_doAlgorithm():
-    strategy = MultiplicationStrategy()
+    strategy = MultiplicationStrategy((2, 2))
     answer = strategy.doAlgorithm()
     survey = SurveyContextStrategy(strategy, lambda: answer)
 

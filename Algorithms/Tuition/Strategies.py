@@ -8,13 +8,17 @@
 #       format_version: '1.5'
 #       jupytext_version: 1.16.4
 #   kernelspec:
-#     display_name: Python 3 (ipykernel)
+#     display_name: Python [conda env:base] *
 #     language: python
-#     name: python3
+#     name: conda-base-py
 # ---
 
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic, Tuple
+from typing import TypeVar, Generic
+from collections.abc import Iterable
+from functools import reduce
+
+from Strategy import Strategy
 
 # ---
 
@@ -23,20 +27,9 @@ T = TypeVar('T')
 
 # ---
 
-# ### Generic
-
-class Strategy(ABC, Generic[T]):
-    @abstractmethod
-    def doAlgorithm(self) -> T:
-        pass
-
-
 class CalculationStrategy(Generic[T], Strategy[T]):
-    def __init__(self, numbers: Tuple[T, T] = (0, 0)):
-        num1, num2 = numbers
-
-        self.num1 = num1
-        self.num2 = num2
+    def __init__(self, numbers: Iterable[T]):
+        self._numbers = numbers
 
     @abstractmethod
     def doAlgorithm(self) -> T:
@@ -46,39 +39,43 @@ class CalculationStrategy(Generic[T], Strategy[T]):
 # ### Addition
 
 class AdditionStrategy(Generic[T], CalculationStrategy[T]):
-    def __init__(self, numbers: Tuple[T, T] = (0, 0)):
+    def __init__(self, numbers: Iterable[T]):
         super().__init__(numbers)
 
     def doAlgorithm(self) -> T:
-        return self.num1 + self.num2
+        if not self._numbers:
+            return 0
+            
+        return sum(self._numbers)
 
     def __str__(self) -> str:
-        return "%s + %s" % (self.num1, self.num2)
+        return  ' + '.join(map(str, self._numbers))
 
 
 # #### Result
 
 # + active=""
-# print(AdditionStrategy((2, 2)).doAlgorithm())
+# print(AdditionStrategy([1, 2]).doAlgorithm())
 # -
 
 # #### ToString
 
 # + active=""
-# print(AdditionStrategy((2, 2)))
+# print(AdditionStrategy((2, 2, 3)))
 # -
 
 # ### Multiplication
 
 class MultiplicationStrategy(Generic[T], CalculationStrategy[T]):
-    def __init__(self, numbers: Tuple[T, T] = (0, 0)):
+    def __init__(self, numbers: Iterable[T]):
         super().__init__(numbers)
 
     def doAlgorithm(self) -> T:
-        return self.num1 * self.num2
+        return reduce(lambda acc, number: acc * number, self._numbers)
 
     def __str__(self) -> str:
-        return "%s x %s" % (self.num1, self.num2)
+        return ' x '.join(map(str, self._numbers))
+
 
 # #### Result
 
@@ -89,4 +86,22 @@ class MultiplicationStrategy(Generic[T], CalculationStrategy[T]):
 # #### ToString
 
 # + active=""
-# print(MultiplicationStrategy((2, 3)))
+# print(MultiplicationStrategy((2, 2, 3)))
+# -
+
+class CalculationStrategyFactory(ABC, Generic[T]):
+    @staticmethod
+    def createAdditionStrategy(numbers: Iterable[T]) -> CalculationStrategy[T]:
+        return AdditionStrategy(numbers)
+
+    @staticmethod
+    def createAdditionStrategies(numbersCollection: Iterable[Iterable[T]]) -> Iterable[CalculationStrategy[T]]:
+        return [CalculationStrategyFactory.createAdditionStrategy(numbers) for numbers in numbersCollection]
+
+    @staticmethod
+    def createMultiplicationStrategy(numbers: Iterable[T]) -> CalculationStrategy[T]:
+        return MultiplicationStrategy(numbers)
+
+    @staticmethod
+    def createMultiplicationStrategy(numbersCollection: Iterable[Iterable[T]]) -> Iterable[CalculationStrategy[T]]:
+        return [CalculationStrategyFactory.createMultiplicationStrategy(numbers) for numbers in numbersCollection]
