@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.4
+#       jupytext_version: 1.16.6
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
@@ -26,5 +26,5 @@ T = TypeVar('T')
 
 class Evaluation(ABC, Generic[T]):
     @abstractmethod
-    def evaluate(self) -> Iterable[T, T, bool]:
+    def evaluate(self) -> Iterable[str, T, T, bool]:
         pass

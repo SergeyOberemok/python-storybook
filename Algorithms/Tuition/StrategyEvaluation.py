@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.4
+#       jupytext_version: 1.16.6
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
@@ -34,16 +34,20 @@ class StrategyEvaluation(Generic[T], Evaluation[T]):
     def __init__(self, strategy: Strategy[T]):
         self._strategy = strategy
 
+    def __str__(self) -> str:
+        return str(self._strategy)
+
     @property
     def answer(self) -> T:
         pass
 
-    def evaluate(self) -> Iterable[T, T, bool]:
-        target = self._strategy.doAlgorithm()
+    @property
+    def target(self) -> T:
+        return self._strategy.doAlgorithm()
+
+    def evaluate(self) -> Iterable[str, T, T, bool]:
+        target = self.target
         answer = self.answer
         result = answer == target
 
-        return target, answer, result
-
-    def __str__(self) -> str:
-        return str(self._strategy)
+        return str(self), target, answer, result

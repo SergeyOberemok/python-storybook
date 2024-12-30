@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.4
+#       jupytext_version: 1.16.6
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
@@ -42,10 +42,7 @@ class SurveyStrategyEvaluation(Generic[T], StrategyEvaluation[T]):
 
     @property
     def answer(self) -> T:
-        if not self._obtainAnswer:
-            return None
-            
-        return self._obtainAnswer(str(self))
+        return self._obtainAnswer(str(self)) if self._obtainAnswer else None
 
 
 # + active=""
@@ -70,10 +67,7 @@ class ResponseStrategyEvaluation(Generic[T], StrategyEvaluation[T]):
 
     @property
     def answer(self) -> T:
-        if not self._obtainAnswer:
-            return None
-            
-        return self._obtainAnswer()
+        return self._obtainAnswer() if self._obtainAnswer else None
 
 
 # + active=""

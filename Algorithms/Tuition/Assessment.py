@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.4
+#       jupytext_version: 1.16.6
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
@@ -29,7 +29,7 @@ class Assessment(ABC):
         pass
 
     @abstractmethod
-    def assist(self):
+    def assess(self):
         pass
 
 
@@ -38,12 +38,15 @@ class Assessment(ABC):
 # ### Item
 
 class AssessmentItem(Assessment):
-    def __init__(self, question: StrategyEvaluation, assistCb: Callable = None):
+    def __init__(self, question: StrategyEvaluation):
         self._question = question
-        self._assistCb = assistCb
 
     def __str__(self) -> str:
         return str(self._question)
+
+    @property
+    def goal(self):
+        return self._question.target
 
     def pipe(self, *funcs):
         for func in funcs:
@@ -51,53 +54,44 @@ class AssessmentItem(Assessment):
 
         return self
 
-    def assist(self):
-        result = self._question.evaluate()
-
-        if self._assistCb:
-            self._assistCb(result)
-
-        return result
+    def assess(self):
+        return self._question.evaluate()
 
 
 # ### Collection
 
 class AssessmentCollection(Assessment):
     def __init__(self, questions: Iterable[StrategyEvaluation]):
-        self._questions = questions
-        self.__reset()
+        self._questions = [AssessmentItem(question) for question in questions]
         self._pipeFuncs = []
+        self._iterator = None
 
     def __iter__(self):
-        self.__reset()
         self._iterator = iter(self._questions)
         
         return self
 
     def __next__(self):
-        try:
-            self._question = next(self._iterator)
-
-            return AssessmentItem(self._question, lambda result: self._results.append(result))
-        except StopIteration:
-            self._iterator = None
-            raise StopIteration
+        return next(self._iterator)
 
     def __str__(self):
-        return '\n'.join([', '.join(map(str, items)) for items in self._results])
+        return '\n'.join([str(question) for question in self._questions])
+
+    @property
+    def results(self):
+        return [question.assess() for question in self._questions]
+
+    @property
+    def result(self):
+        return all(value for *head, value in self.results)
 
     def pipe(self, *funcs):
         self._pipeFuncs = funcs
         
         return self
 
-    def assist(self) -> bool:
-        if not self._iterator:
-            for item in self:
-                item.pipe(*self._pipeFuncs).assist()
+    def assess(self) -> bool:
+        for question in self._questions:
+            question.pipe(*self._pipeFuncs).assess()
                 
-        return all(value for *head, value in self._results)
-
-    def __reset(self):
-        self._iterator = None
-        self._results = []
+        return self.result

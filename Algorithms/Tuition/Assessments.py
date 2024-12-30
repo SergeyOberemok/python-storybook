@@ -6,14 +6,16 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.4
+#       jupytext_version: 1.16.6
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
 #     name: conda-base-py
 # ---
 
+# + editable=true slideshow={"slide_type": ""}
 from collections.abc import Iterable, Callable
+# -
 
 from Assessment import AssessmentCollection
 from Strategy import Strategy
@@ -32,7 +34,8 @@ from StrategyEvaluations import StrategyEvaluationFactory
 #     StrategyEvaluationFactory.createSurveyStrategyEvaluation(AdditionStrategy((2, 2)))
 # ]).pipe(lambda item: item.setAnswer(getAnswer))
 #
-# print(assessment.assist(), assessment)
+# for i in [assessment.assess(), assessment, assessment.results, assessment.result]:
+#     print(i)
 # -
 
 # ### Response assessment
@@ -43,9 +46,10 @@ from StrategyEvaluations import StrategyEvaluationFactory
 # ])
 #
 # for item in assessment:
-#     item.pipe(lambda i: i.setAnswer(lambda: 3)).assist()
+#     item.pipe(lambda i: i.setAnswer(lambda: 3)).assess()
 #
-# print(assessment.assist(), assessment.pipe(lambda i: i.setAnswer(lambda: 4)).assist(), assessment)
+# for i in [assessment.assess(), assessment, assessment.results, assessment.result]:
+#     print(i)
 # -
 
 class AssessmentFactory:
