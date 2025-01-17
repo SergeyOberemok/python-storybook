@@ -1,6 +1,8 @@
-from flask import Flask
-from flask_socketio import SocketIO, send, emit
-import os, sys
+import os
+import sys
+
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 
 from Strategies import CalculationStrategyFactory
 
@@ -15,7 +17,7 @@ import numbers_utils
 
 from Assessments import AssessmentFactory
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='dist', static_folder='dist', static_url_path='/')
 socketio = SocketIO(app, debug=True, cors_allowed_origins='*', async_mode='eventlet')
 
 assessment = None
@@ -23,8 +25,8 @@ assessmentIterator = None
 assessmentItem = None
 
 
-def start_assessment():
-    numbersPairs = numbers_utils.generateRandomNumbersPairs(maxNumber=10, count=3)
+def start_assessment(quantity: int):
+    numbersPairs = numbers_utils.generateRandomNumbersPairs(maxNumber=10, count=quantity)
     strategies = CalculationStrategyFactory.createAdditionStrategies(numbersPairs)
 
     assessment = AssessmentFactory.createResponseAssessment(strategies)
@@ -34,10 +36,10 @@ def start_assessment():
 
 
 @socketio.on('start')
-def handle_start(args):
+def handle_start(quantity: int):
     global assessment, assessmentIterator
 
-    assessment, assessmentIterator = start_assessment()
+    assessment, assessmentIterator = start_assessment(quantity)
 
 
 @socketio.on('objective')
@@ -63,6 +65,19 @@ def handle_question(args):
     except StopIteration:
         emit('end', {'assessment': str(assessment), 'results': assessment.results, 'result': assessment.result})
         return ''
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/ping')
+def pong_hello_world():
+    return 'pong hello world'
+
+
+@app.route('/image/<int:digit>')
+def fetch_image(digit: int):
+    return f'{digit}'
 
 
 if __name__ == '__main__':
