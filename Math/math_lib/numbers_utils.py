@@ -1,4 +1,4 @@
-from collections.abc import Generator, Collection, Iterable
+from collections.abc import Generator, Iterable
 import random
 
 
@@ -28,7 +28,7 @@ def generateRandomNumbers(maxNumber: int, count: int) -> Generator[int, None, No
         yield random.choice(numbers)
 
 
-def generateRandomNumbersPairs(maxNumber: int, count: int) -> Collection[Iterable[int, int]]:
+def generateRandomNumbersPairs(maxNumber: int, count: int) -> Iterable[Iterable[int]]:
     numbersPairs = zip(generateRandomNumbers(maxNumber, count), generateRandomNumbers(maxNumber, count))
 
     return [*numbersPairs]
