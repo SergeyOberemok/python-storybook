@@ -1,0 +1,16 @@
+POST https://www.cam-sexy.eu/ajax/load/ HTTP/1.1
+content-type: multipart/form-data; boundary=----WebKitFormBoundarycKkRRscoKmDIxPAD
+
+------WebKitFormBoundarycKkRRscoKmDIxPAD
+Content-Disposition: form-data; name="ids"
+
+[]
+------WebKitFormBoundarycKkRRscoKmDIxPAD
+Content-Disposition: form-data; name="lang"
+
+fr
+------WebKitFormBoundarycKkRRscoKmDIxPAD
+Content-Disposition: form-data; name="profilemaster_id"
+
+19
+------WebKitFormBoundarycKkRRscoKmDIxPAD--
