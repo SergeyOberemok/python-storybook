@@ -5,8 +5,6 @@ class TableHtml:
     columnHtml = '<td style="text-align: left">{}</td>'
     columnHtmlDivider = '</td><td style="text-align: left">'
 
-    rows = []
-
     def __init__(self):
         self.rows = []
 
@@ -20,6 +18,7 @@ class TableHtml:
         rowsHtml = self.rowHtml.format(joinedRows)
         return self.tableHtml.format(rowsHtml)
 
+    @staticmethod
     def toHtml(table):
         tableHtml = TableHtml()
 

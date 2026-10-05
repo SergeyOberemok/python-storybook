@@ -2,23 +2,15 @@ from collections.abc import Generator, Iterable
 import random
 
 
-def getDigits(number: int) -> list[int]:
-    letters = [*str(number)]
+def getDigits(number: int | str) -> list[int]:
+    letters = [*str(number).lstrip('-')]
 
     return [int(letter) for letter in letters]
 
 
-def getTerms(number, maxBase=10):
-    terms = []
-
-    for index, term in enumerate(range(number, 0, -1)):
-        if index == 0:
-            continue
-
-        if number == index + term and index <= term < maxBase:
-            terms.append((index, term))
-
-    return terms
+def getTerms(number: int, maxBase: int = 10) -> list[tuple[int, int]]:
+    # pairs (a, b) with a + b == number, a <= b and b a single digit of maxBase
+    return [(index, number - index) for index in range(1, number) if index <= number - index < maxBase]
 
 
 def generateRandomNumbers(maxNumber: int, count: int) -> Generator[int, None, None]:

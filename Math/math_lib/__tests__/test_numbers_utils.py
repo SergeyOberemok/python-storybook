@@ -1,4 +1,15 @@
-from numbers_utils import generateRandomNumbers, generateRandomNumbersPairs
+from math_lib.numbers_utils import generateRandomNumbers, generateRandomNumbersPairs, getDigits, getTerms
+
+
+def test_getDigits():
+    assert getDigits(123) == [1, 2, 3]
+    assert getDigits(-45) == [4, 5]
+    assert getDigits('67') == [6, 7]
+
+
+def test_getTerms():
+    assert getTerms(5) == [(1, 4), (2, 3)]
+    assert getTerms(12) == [(3, 9), (4, 8), (5, 7), (6, 6)]
 
 
 def test_generateRandomNumbers():

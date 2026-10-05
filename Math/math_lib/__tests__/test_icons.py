@@ -1,4 +1,4 @@
-from icons_utils import mapDigitsToIcons, mapNumberToIcons, replaceNumbersToIcons
+from math_lib.icons_utils import mapDigitsToIcons, mapNumberToIcons, replaceNumbersToIcons
 
 
 def test_mapDigitsToIcons():
@@ -32,3 +32,11 @@ def test_replaceNumbersToIcons():
 
     assert all(icon in result for icon in iconsValues)
     assert all(str(number) not in result for number in numbers)
+
+
+def test_replaceNumbersToIcons_shorterNumberFirst():
+    icons = {1: 'one', 2: 'two'}
+
+    result = replaceNumbersToIcons('1 and 12', icons)
+
+    assert result == 'one and onetwo'

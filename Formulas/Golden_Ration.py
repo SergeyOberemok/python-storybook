@@ -14,7 +14,7 @@
 # ---
 
 import sympy as sp
-from IPython.display import Math
+from IPython.display import Math, display
 
 goldenRation = 1.618
 
@@ -38,7 +38,7 @@ display(Math(sp.latex(goldenRationExpShort)))
 # ##### Functions
 
 def calcGoldenRationX(whole: int) -> float:
-    return round(next(iter(sp.solve(goldenRationExpShort.subs(w, whole), x))), 3)
+    return round(float(next(iter(sp.solve(goldenRationExpShort.subs(w, whole), x)))), 3)
 
 
 def calcGoldenRationAB(whole: int) -> tuple[float, float]:
