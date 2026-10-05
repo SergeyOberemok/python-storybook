@@ -41,7 +41,7 @@ Tests live in `math/math_lib/tests/` and use pytest. The root `pytest.ini` puts 
 
 ## Running notebooks headlessly
 
-Use `nbclient` from the conda env with the notebook's own folder as the working directory (notebooks use relative paths like `./data/...`). Notebooks calling `input()` need it stubbed. Running `flow/files.ipynb` and `types/Files/files_create.ipynb` modifies the tracked `flow/temp.txt` / `types/Files/test.txt`; restore them afterwards. Known non-runnable: `math/addition_table.ipynb` (imports `Assessments`/`Strategies` from a missing `../Algorithms/Tuition`), `types/Images/images_comparison.ipynb` (needs `opencv`), `finances/test.ipynb` (needs `nasdaqdatalink` + a local `finances/api_key`, which is gitignored).
+Use `nbclient` from the conda env with the notebook's own folder as the working directory (notebooks use relative paths like `./data/...`). Notebooks calling `input()` need it stubbed. Running `flow/files.ipynb` and `types/Files/files_create.ipynb` modifies the tracked `flow/temp.txt` / `types/Files/test.txt`; restore them afterwards. Known non-runnable: `math/algebra/operations/addition_table.ipynb` (imports `Assessments`/`Strategies` from a missing `../Algorithms/Tuition`), `types/Images/images_comparison.ipynb` (needs `opencv`), `finances/test.ipynb` (needs `nasdaqdatalink` + a local `finances/api_key`, which is gitignored).
 
 The conda env ships pandas 3.x: use `'ME'` instead of `'M'` for month-end frequencies, and note Copy-on-Write semantics.
 
